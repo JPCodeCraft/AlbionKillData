@@ -8,16 +8,16 @@ export interface killEvent {
 }
 
 export interface equipment {
-  MainHand: item;
-  OffHand: item;
-  Head: item;
-  Armor: item;
-  Shoes: item;
-  Bag: item;
-  Cape: item;
-  Mount: item;
-  Potion: item;
-  Food: item;
+  MainHand: item | null;
+  OffHand: item | null;
+  Head: item | null;
+  Armor: item | null;
+  Shoes: item | null;
+  Bag: item | null;
+  Cape: item | null;
+  Mount: item | null;
+  Potion: item | null;
+  Food: item | null;
   Inventory: (item | null)[];
 }
 
