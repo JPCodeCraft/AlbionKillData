@@ -32,7 +32,7 @@ async function fetchData(): Promise<KillEvent[]> {
     return uniqueKillEvents.sort((a, b) => b.EventId - a.EventId);
   } catch (error) {
     console.error("Error fetching data:", error);
-    return [];
+    throw error;
   }
 }
 
@@ -111,7 +111,8 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
             itemDataItem.killerCount++;
           } else if (player === event.Victim) {
             itemDataItem.victimCount++;
-          } else {
+          } else if (player.Name !== event.Killer.Name) {
+            // Check if participant's name is not the same as the killer's name
             itemDataItem.participantsCount++;
           }
         }
@@ -159,7 +160,7 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(error);
+  console.error("An error occurred in the main function:", error);
   process.exit(1);
 });
 
