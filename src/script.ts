@@ -19,11 +19,7 @@ async function fetchData(): Promise<KillEvent[]> {
   }
 }
 
-function processKillEvents(
-  killEvents: KillEvent[],
-  data: Data,
-  dataFilePath: string
-): void {
+function processKillEvents(killEvents: KillEvent[], data: Data): void {
   killEvents.forEach((event) => {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
@@ -71,12 +67,13 @@ function processKillEvents(
       killTypeDataItem.dateData.push(dateDataItem);
     }
 
+    // Increment the eventsCount
+    dateDataItem.eventsCount++;
+
     // Sum the amounts of items based on the Type
     [event.Killer, event.Victim, ...event.Participants].forEach((player) => {
       Object.values(player.Equipment).forEach((item) => {
         if (item && dateDataItem) {
-          dateDataItem.eventsCount++;
-
           let itemDataItem = dateDataItem.itemData.find(
             (id) => id.Type === item.Type
           );
@@ -85,20 +82,20 @@ function processKillEvents(
           if (!itemDataItem) {
             itemDataItem = {
               Type: item.Type,
-              killerAmount: 0,
-              victimAmount: 0,
-              participantsAmount: 0,
+              killerCount: 0,
+              victimCount: 0,
+              participantsCount: 0,
             };
             dateDataItem.itemData.push(itemDataItem);
           }
 
-          // Increment the appropriate amount
+          // Increment the appropriate count
           if (player === event.Killer) {
-            itemDataItem.killerAmount++;
+            itemDataItem.killerCount++;
           } else if (player === event.Victim) {
-            itemDataItem.victimAmount++;
+            itemDataItem.victimCount++;
           } else {
-            itemDataItem.participantsAmount++;
+            itemDataItem.participantsCount++;
           }
         }
       });
@@ -106,12 +103,9 @@ function processKillEvents(
 
     // Sort the itemData array by killerAmount in descending order
     if (dateDataItem) {
-      dateDataItem.itemData.sort((a, b) => b.killerAmount - a.killerAmount);
+      dateDataItem.itemData.sort((a, b) => b.killerCount - a.killerCount);
     }
   });
-
-  // Write the updated data back to the file
-  fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
 }
 
 async function main() {
@@ -136,12 +130,27 @@ async function main() {
   }
 
   // Process the killEvents
-  processKillEvents(killEvents, data, dataFilePath);
+  processKillEvents(killEvents, data);
+
+  // Cleanup old data
+  cleanupOldData(data);
 
   data.latestEventId = killEvents[0].EventId;
+
+  // Write the updated data back to the file
+  fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
 }
 
 main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
+
+function cleanupOldData(data: Data): void {
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+  data.killTypeData.forEach((ktd) => {
+    ktd.dateData = ktd.dateData.filter((dd) => dd.date >= sevenDaysAgo);
+  });
+}

@@ -18,8 +18,8 @@ export interface DateData{
 
 export interface ItemData{
     Type: string;
-    killerAmount: number;
-    victimAmount: number;
-    participantsAmount: number;
+    killerCount: number;
+    victimCount: number;
+    participantsCount: number;
 }
 
