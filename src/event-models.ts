@@ -18,7 +18,6 @@ export interface equipment {
   Mount: item | null;
   Potion: item | null;
   Food: item | null;
-  Inventory: (item | null)[];
 }
 
 export interface item {
@@ -31,5 +30,6 @@ export interface player {
   Name: string;
   Id: number;
   AverageItemPower: number;
-  Equipment: equipment;
+  Equipment: equipment;  
+  Inventory: (item | null)[];
 }
