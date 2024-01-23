@@ -88,7 +88,7 @@ function processKillEvents(
 
 async function main() {
   const killEvents: killEvent[] = await fetchData();
-  const latestEventId = killEvents[0].EventId;
+  const newLatestEventId = killEvents[0].EventId;
 
   // Define the path to the data.json file
   const dataFilePath = path.resolve(__dirname, "..", "data.json");
@@ -98,6 +98,9 @@ async function main() {
   if (fs.existsSync(dataFilePath)) {
     const rawData = fs.readFileSync(dataFilePath, "utf-8");
     data = JSON.parse(rawData);
+
+    // Convert date strings back to Date objects
+    data.dateData.forEach((dd) => (dd.date = new Date(dd.date)));
   } else {
     data = { latestEventId: 0, dateData: [] };
     fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
@@ -106,7 +109,7 @@ async function main() {
   // Process the killEvents
   processKillEvents(killEvents, data, dataFilePath);
 
-  data.latestEventId = latestEventId;
+  data.latestEventId = newLatestEventId;
 }
 
 main().catch((error) => {
