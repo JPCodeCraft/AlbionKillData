@@ -85,7 +85,7 @@ async function main() {
   const latestEventId = killEvents[0].EventId;
 
   // Define the path to the data.json file
-  const dataFilePath = path.resolve(__dirname, "data.json");
+  const dataFilePath = path.resolve(__dirname, "..", "data.json");
 
   // Read or create the data.json file
   let data: data;
