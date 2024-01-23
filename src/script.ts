@@ -298,6 +298,7 @@ function processKillEvents(
   killEvents.forEach((event) => {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
+      console.log("Ignoring event ", event.EventId)
       return;
     }
 
@@ -370,10 +371,10 @@ async function main() {
     fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
   }
 
-  data.latestEventId = latestEventId;
-
   // Process the killEvents
   processKillEvents(killEvents, data, dataFilePath);
+
+  data.latestEventId = latestEventId;
 }
 
 main().catch((error) => {
