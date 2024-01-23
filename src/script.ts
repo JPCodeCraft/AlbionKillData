@@ -4,6 +4,15 @@ import path from "path";
 import { KillEvent } from "./event-models";
 import { Data, KillType } from "./data-model";
 
+const logStream = fs.createWriteStream(path.join(__dirname, "..", "log.txt"), {
+  flags: "a",
+});
+console.log = function (...args: any[]) {
+  const message = `${new Date().toISOString()} - ${args.join(" ")}`;
+  logStream.write(message + "\n");
+  process.stdout.write(message + "\n");
+};
+
 async function fetchData(): Promise<KillEvent[]> {
   try {
     const requests = Array.from({ length: 5 }, (_, i) =>
@@ -23,15 +32,21 @@ async function fetchData(): Promise<KillEvent[]> {
       }))
     );
 
+    console.log(`Downloaded ${killEvents.length} events`);
+
     const uniqueKillEvents: KillEvent[] = Array.from(
       killEvents
         .reduce((map, event) => map.set(event.EventId, event), new Map())
         .values()
     );
 
+    console.log(
+      `${uniqueKillEvents.length} events left after removing duplicates`
+    );
+
     return uniqueKillEvents.sort((a, b) => b.EventId - a.EventId);
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.log("Error fetching data:", error);
     throw error;
   }
 }
@@ -40,10 +55,11 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
   killEvents.forEach((event) => {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
-      console.log("Ignoring event ", event.EventId);
+      console.log(
+        `Ignoring event with ID ${event.EventId} as it's Id is smaller than the latest event Id.`
+      );
       return;
     }
-
     // Determine the KillType for the event
     let killType: KillType;
     const participantsCount = event.Participants.length;
@@ -150,17 +166,17 @@ async function main() {
   // Process the killEvents
   processKillEvents(killEvents, data);
 
+  data.latestEventId = killEvents[0].EventId;
+
   // Cleanup old data
   cleanupOldData(data);
-
-  data.latestEventId = killEvents[0].EventId;
 
   // Write the updated data back to the file
   fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
 }
 
 main().catch((error) => {
-  console.error("An error occurred in the main function:", error);
+  console.log("An error occurred in the main function:", error);
   process.exit(1);
 });
 
@@ -169,6 +185,13 @@ function cleanupOldData(data: Data): void {
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
   data.killTypeData.forEach((ktd) => {
+    const oldData = ktd.dateData.filter((dd) => dd.date < sevenDaysAgo);
+    oldData.forEach((dd) => {
+      console.log(
+        `Deleted data from ${dd.date.toISOString()} for kill type ${ktd.type}`
+      );
+    });
+
     ktd.dateData = ktd.dateData.filter((dd) => dd.date >= sevenDaysAgo);
   });
 }
