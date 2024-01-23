@@ -4,7 +4,11 @@ import path from "path";
 import { KillEvent } from "./event-models";
 import { Data, KillType } from "./data-model";
 
-const logStream = fs.createWriteStream(path.join(__dirname, "..", "log.txt"), {
+const retentionDays = 7;
+const retentionTime = Date.now() - retentionDays * 24 * 60 * 60 * 1000;
+
+const logFilePath = path.join(__dirname, "..", "log.txt");
+const logStream = fs.createWriteStream(logFilePath, {
   flags: "a",
 });
 console.log = function (...args: any[]) {
@@ -56,7 +60,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
       console.log(
-        `Ignoring event with ID ${event.EventId} as it's Id is smaller than the latest event Id.`
+        `Ignoring event with ID ${event.EventId} as it's ID is smaller than the latest event ID ${data.latestEventId}.`
       );
       return;
     }
@@ -183,17 +187,32 @@ main().catch((error) => {
 });
 
 function cleanupOldData(data: Data): void {
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
+  // Cleanup old events
   data.killTypeData.forEach((ktd) => {
-    const oldData = ktd.dateData.filter((dd) => dd.date < sevenDaysAgo);
+    const oldData = ktd.dateData.filter(
+      (dd) => dd.date.getTime() < retentionTime
+    );
     oldData.forEach((dd) => {
       console.log(
         `Deleted data from ${dd.date.toISOString()} for kill type ${ktd.type}`
       );
     });
 
-    ktd.dateData = ktd.dateData.filter((dd) => dd.date >= sevenDaysAgo);
+    ktd.dateData = ktd.dateData.filter(
+      (dd) => dd.date.getTime() >= retentionTime
+    );
   });
+
+  // Cleanup old log entries
+  if (fs.existsSync(logFilePath)) {
+    const logData = fs.readFileSync(logFilePath, "utf-8");
+    const logLines = logData.split("\n");
+
+    const filteredLogLines = logLines.filter((line) => {
+      const timestamp = new Date(line.split(" - ")[0]).getTime();
+      return timestamp >= retentionTime;
+    });
+
+    fs.writeFileSync(logFilePath, filteredLogLines.join("\n"), "utf-8");
+  }
 }
