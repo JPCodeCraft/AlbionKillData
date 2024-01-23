@@ -84,7 +84,7 @@ async function main() {
   const killEvents: killEvent[] = await fetchData();
   const latestEventId = killEvents[0].EventId;
 
-  console.log("Latest event ID:", latestEventId);
+  console.log(killEvents);
 
   // Define the path to the data.json file
   const dataFilePath = path.resolve(__dirname, "..", "data.json");
