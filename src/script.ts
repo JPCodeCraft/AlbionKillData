@@ -9,7 +9,7 @@ async function fetchData(): Promise<killEvent[]> {
     const response = await axios.get(
       "https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=0"
     );
-    return response.data.map((event) => ({
+    return response.data.map((event: any) => ({
       ...event,
       TimeStamp: new Date(event.TimeStamp),
     }));
