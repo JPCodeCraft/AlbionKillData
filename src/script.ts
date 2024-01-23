@@ -27,7 +27,7 @@ function processKillEvents(
   killEvents.forEach((event) => {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
-      console.log("Ignoring event ", event.EventId)
+      console.log("Ignoring event ", event.EventId);
       return;
     }
 
@@ -75,6 +75,11 @@ function processKillEvents(
         }
       });
     });
+
+    // Sort the itemData array by killerAmount in descending order
+    if (dateDataItem) {
+      dateDataItem.itemData.sort((a, b) => b.killerAmount - a.killerAmount);
+    }
   });
 
   // Write the updated data back to the file
