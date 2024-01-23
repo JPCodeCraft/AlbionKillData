@@ -28,7 +28,7 @@ export interface Item {
 
 export interface Player {
   Name: string;
-  Id: number;
+  Id: string;
   AverageItemPower: number;
   Equipment: Equipment;  
   Inventory: (Item | null)[];

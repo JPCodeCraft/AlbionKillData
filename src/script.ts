@@ -141,7 +141,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
             itemDataItem.killerCount++;
           } else if (player === event.Victim) {
             itemDataItem.victimCount++;
-          } else if (player.Name !== event.Killer.Name) {
+          } else if (player.Id !== event.Killer.Id) {
             // Check if participant's name is not the same as the killer's name
             itemDataItem.participantsCount++;
           }
