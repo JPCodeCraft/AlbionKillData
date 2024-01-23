@@ -6,13 +6,30 @@ import { Data, KillType } from "./data-model";
 
 async function fetchData(): Promise<KillEvent[]> {
   try {
-    const response = await axios.get(
-      "https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=0"
+    const requests = Array.from({ length: 5 }, (_, i) =>
+      axios.get(
+        `https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=${
+          i * 51
+        }`
+      )
     );
-    return response.data.map((event: any) => ({
-      ...event,
-      TimeStamp: new Date(event.TimeStamp),
-    }));
+
+    const responses = await Promise.all(requests);
+
+    const killEvents = responses.flatMap((response) =>
+      response.data.map((event: any) => ({
+        ...event,
+        TimeStamp: new Date(event.TimeStamp),
+      }))
+    );
+
+    const uniqueKillEvents: KillEvent[] = Array.from(
+      killEvents
+        .reduce((map, event) => map.set(event.EventId, event), new Map())
+        .values()
+    );
+
+    return uniqueKillEvents.sort((a, b) => b.EventId - a.EventId);
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];
