@@ -2,7 +2,7 @@ name: Fetch and Process Kill Data
 
 on:
   schedule:
-    - cron: "*/2 * * * *" # Runs every X minutes
+    - cron: "*/5 * * * *" # Runs every X minutes
   workflow_dispatch:
 
 jobs:
