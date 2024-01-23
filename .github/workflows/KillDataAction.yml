@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Run script
-        run: npx ts-node script.ts
+        run: npx ts-node src/script.ts
 
       - name: Commit and push changes
         run: |
