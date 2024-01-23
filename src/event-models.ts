@@ -1,35 +1,35 @@
-export interface killEvent {
+export interface KillEvent {
   numberOfParticipants: number;
   EventId: number;
   TimeStamp: Date;
-  Killer: player;
-  Victim: player;
-  Participants: player[];
+  Killer: Player;
+  Victim: Player;
+  Participants: Player[];
 }
 
-export interface equipment {
-  MainHand: item | null;
-  OffHand: item | null;
-  Head: item | null;
-  Armor: item | null;
-  Shoes: item | null;
-  Bag: item | null;
-  Cape: item | null;
-  Mount: item | null;
-  Potion: item | null;
-  Food: item | null;
+export interface Equipment {
+  MainHand: Item | null;
+  OffHand: Item | null;
+  Head: Item | null;
+  Armor: Item | null;
+  Shoes: Item | null;
+  Bag: Item | null;
+  Cape: Item | null;
+  Mount: Item | null;
+  Potion: Item | null;
+  Food: Item | null;
 }
 
-export interface item {
+export interface Item {
   Type: string;
   Count: number;
   Quality: number;
 }
 
-export interface player {
+export interface Player {
   Name: string;
   Id: number;
   AverageItemPower: number;
-  Equipment: equipment;  
-  Inventory: (item | null)[];
+  Equipment: Equipment;  
+  Inventory: (Item | null)[];
 }

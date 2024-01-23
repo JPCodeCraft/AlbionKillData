@@ -1,14 +1,22 @@
-export interface data{
+export interface Data{
     latestEventId: number;
-    dateData: dateData[];
+    killTypeData: KillTypeData[];
 }
 
-export interface dateData{
+export type KillType = 'solo' | 'duo' | '3-5' | '6-10' | '>10';
+
+export interface KillTypeData {
+    type: KillType;
+    dateData: DateData[];
+}
+
+export interface DateData{
     date: Date;
-    itemData: itemData[];
+    eventsCount: number;
+    itemData: ItemData[];
 }
 
-export interface itemData{
+export interface ItemData{
     Type: string;
     killerAmount: number;
     victimAmount: number;
