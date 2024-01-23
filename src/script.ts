@@ -18,17 +18,69 @@ async function fetchData(): Promise<killEvent[]> {
         Id: event.Killer.Id,
         AverageItemPower: event.Killer.AverageItemPower,
         Equipment: {
-          MainHand: event.Killer.Equipment.MainHand,
-          OffHand: event.Killer.Equipment.OffHand,
-          Head: event.Killer.Equipment.Head,
-          Armor: event.Killer.Equipment.Armor,
-          Shoes: event.Killer.Equipment.Shoes,
-          Bag: event.Killer.Equipment.Bag,
-          Cape: event.Killer.Equipment.Cape,
-          Mount: event.Killer.Equipment.Mount,
-          Potion: event.Killer.Equipment.Potion,
-          Food: event.Killer.Equipment.Food,
-          Inventory: event.Killer.Equipment.Inventory,
+          MainHand: {
+            Type: event.Killer.Equipment.MainHand.Type,
+            Count: event.Killer.Equipment.MainHand.Count,
+            Quality: event.Killer.Equipment.MainHand.Quality,
+          },
+          OffHand: {
+            Type: event.Killer.Equipment.OffHand.Type,
+            Count: event.Killer.Equipment.OffHand.Count,
+            Quality: event.Killer.Equipment.OffHand.Quality,
+          },
+          Head: {
+            Type: event.Killer.Equipment.Head.Type,
+            Count: event.Killer.Equipment.Head.Count,
+            Quality: event.Killer.Equipment.Head.Quality,
+          },
+          Armor: {
+            Type: event.Killer.Equipment.Armor.Type,
+            Count: event.Killer.Equipment.Armor.Count,
+            Quality: event.Killer.Equipment.Armor.Quality,
+          },
+          Shoes: {
+            Type: event.Killer.Equipment.Shoes.Type,
+            Count: event.Killer.Equipment.Shoes.Count,
+            Quality: event.Killer.Equipment.Shoes.Quality,
+          },
+          Bag: {
+            Type: event.Killer.Equipment.Bag.Type,
+            Count: event.Killer.Equipment.Bag.Count,
+            Quality: event.Killer.Equipment.Bag.Quality,
+          },
+          Cape: {
+            Type: event.Killer.Equipment.Cape.Type,
+            Count: event.Killer.Equipment.Cape.Count,
+            Quality: event.Killer.Equipment.Cape.Quality,
+          },
+          Mount: {
+            Type: event.Killer.Equipment.Mount.Type,
+            Count: event.Killer.Equipment.Mount.Count,
+            Quality: event.Killer.Equipment.Mount.Quality,
+          },
+          Potion: {
+            Type: event.Killer.Equipment.Potion.Type,
+            Count: event.Killer.Equipment.Potion.Count,
+            Quality: event.Killer.Equipment.Potion.Quality,
+          },
+          Food: {
+            Type: event.Killer.Equipment.Food.Type,
+            Count: event.Killer.Equipment.Food.Count,
+            Quality: event.Killer.Equipment.Food.Quality,
+          },
+          Inventory: event.Killer.Equipment.Inventory.map(
+            (inventoryItem: any) => {
+              if (inventoryItem) {
+                return {
+                  Type: inventoryItem.Type,
+                  Count: inventoryItem.Count,
+                  Quality: inventoryItem.Quality,
+                };
+              } else {
+                return null;
+              }
+            }
+          ),
         },
       },
       Victim: {
@@ -36,17 +88,69 @@ async function fetchData(): Promise<killEvent[]> {
         Id: event.Victim.Id,
         AverageItemPower: event.Victim.AverageItemPower,
         Equipment: {
-          MainHand: event.Victim.Equipment.MainHand,
-          OffHand: event.Victim.Equipment.OffHand,
-          Head: event.Victim.Equipment.Head,
-          Armor: event.Victim.Equipment.Armor,
-          Shoes: event.Victim.Equipment.Shoes,
-          Bag: event.Victim.Equipment.Bag,
-          Cape: event.Victim.Equipment.Cape,
-          Mount: event.Victim.Equipment.Mount,
-          Potion: event.Victim.Equipment.Potion,
-          Food: event.Victim.Equipment.Food,
-          Inventory: event.Victim.Equipment.Inventory,
+          MainHand: {
+            Type: event.Killer.Equipment.MainHand.Type,
+            Count: event.Killer.Equipment.MainHand.Count,
+            Quality: event.Killer.Equipment.MainHand.Quality,
+          },
+          OffHand: {
+            Type: event.Killer.Equipment.OffHand.Type,
+            Count: event.Killer.Equipment.OffHand.Count,
+            Quality: event.Killer.Equipment.OffHand.Quality,
+          },
+          Head: {
+            Type: event.Killer.Equipment.Head.Type,
+            Count: event.Killer.Equipment.Head.Count,
+            Quality: event.Killer.Equipment.Head.Quality,
+          },
+          Armor: {
+            Type: event.Killer.Equipment.Armor.Type,
+            Count: event.Killer.Equipment.Armor.Count,
+            Quality: event.Killer.Equipment.Armor.Quality,
+          },
+          Shoes: {
+            Type: event.Killer.Equipment.Shoes.Type,
+            Count: event.Killer.Equipment.Shoes.Count,
+            Quality: event.Killer.Equipment.Shoes.Quality,
+          },
+          Bag: {
+            Type: event.Killer.Equipment.Bag.Type,
+            Count: event.Killer.Equipment.Bag.Count,
+            Quality: event.Killer.Equipment.Bag.Quality,
+          },
+          Cape: {
+            Type: event.Killer.Equipment.Cape.Type,
+            Count: event.Killer.Equipment.Cape.Count,
+            Quality: event.Killer.Equipment.Cape.Quality,
+          },
+          Mount: {
+            Type: event.Killer.Equipment.Mount.Type,
+            Count: event.Killer.Equipment.Mount.Count,
+            Quality: event.Killer.Equipment.Mount.Quality,
+          },
+          Potion: {
+            Type: event.Killer.Equipment.Potion.Type,
+            Count: event.Killer.Equipment.Potion.Count,
+            Quality: event.Killer.Equipment.Potion.Quality,
+          },
+          Food: {
+            Type: event.Killer.Equipment.Food.Type,
+            Count: event.Killer.Equipment.Food.Count,
+            Quality: event.Killer.Equipment.Food.Quality,
+          },
+          Inventory: event.Killer.Equipment.Inventory.map(
+            (inventoryItem: any) => {
+              if (inventoryItem) {
+                return {
+                  Type: inventoryItem.Type,
+                  Count: inventoryItem.Count,
+                  Quality: inventoryItem.Quality,
+                };
+              } else {
+                return null;
+              }
+            }
+          ),
         },
       },
       Participants: event.Participants.map((participant: any) => ({
@@ -54,17 +158,69 @@ async function fetchData(): Promise<killEvent[]> {
         Id: participant.Id,
         AverageItemPower: participant.AverageItemPower,
         Equipment: {
-          MainHand: participant.Equipment.MainHand,
-          OffHand: participant.Equipment.OffHand,
-          Head: participant.Equipment.Head,
-          Armor: participant.Equipment.Armor,
-          Shoes: participant.Equipment.Shoes,
-          Bag: participant.Equipment.Bag,
-          Cape: participant.Equipment.Cape,
-          Mount: participant.Equipment.Mount,
-          Potion: participant.Equipment.Potion,
-          Food: participant.Equipment.Food,
-          Inventory: participant.Equipment.Inventory,
+          MainHand: {
+            Type: event.Killer.Equipment.MainHand.Type,
+            Count: event.Killer.Equipment.MainHand.Count,
+            Quality: event.Killer.Equipment.MainHand.Quality,
+          },
+          OffHand: {
+            Type: event.Killer.Equipment.OffHand.Type,
+            Count: event.Killer.Equipment.OffHand.Count,
+            Quality: event.Killer.Equipment.OffHand.Quality,
+          },
+          Head: {
+            Type: event.Killer.Equipment.Head.Type,
+            Count: event.Killer.Equipment.Head.Count,
+            Quality: event.Killer.Equipment.Head.Quality,
+          },
+          Armor: {
+            Type: event.Killer.Equipment.Armor.Type,
+            Count: event.Killer.Equipment.Armor.Count,
+            Quality: event.Killer.Equipment.Armor.Quality,
+          },
+          Shoes: {
+            Type: event.Killer.Equipment.Shoes.Type,
+            Count: event.Killer.Equipment.Shoes.Count,
+            Quality: event.Killer.Equipment.Shoes.Quality,
+          },
+          Bag: {
+            Type: event.Killer.Equipment.Bag.Type,
+            Count: event.Killer.Equipment.Bag.Count,
+            Quality: event.Killer.Equipment.Bag.Quality,
+          },
+          Cape: {
+            Type: event.Killer.Equipment.Cape.Type,
+            Count: event.Killer.Equipment.Cape.Count,
+            Quality: event.Killer.Equipment.Cape.Quality,
+          },
+          Mount: {
+            Type: event.Killer.Equipment.Mount.Type,
+            Count: event.Killer.Equipment.Mount.Count,
+            Quality: event.Killer.Equipment.Mount.Quality,
+          },
+          Potion: {
+            Type: event.Killer.Equipment.Potion.Type,
+            Count: event.Killer.Equipment.Potion.Count,
+            Quality: event.Killer.Equipment.Potion.Quality,
+          },
+          Food: {
+            Type: event.Killer.Equipment.Food.Type,
+            Count: event.Killer.Equipment.Food.Count,
+            Quality: event.Killer.Equipment.Food.Quality,
+          },
+          Inventory: event.Killer.Equipment.Inventory.map(
+            (inventoryItem: any) => {
+              if (inventoryItem) {
+                return {
+                  Type: inventoryItem.Type,
+                  Count: inventoryItem.Count,
+                  Quality: inventoryItem.Quality,
+                };
+              } else {
+                return null;
+              }
+            }
+          ),
         },
       })),
     }));
