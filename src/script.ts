@@ -198,79 +198,79 @@ async function fetchData(): Promise<killEvent[]> {
         Id: participant.Id,
         AverageItemPower: participant.AverageItemPower,
         Equipment: {
-          MainHand: event.participant.Equipment.MainHand
+          MainHand: participant.Equipment.MainHand
             ? {
-                Type: event.participant.Equipment.MainHand.Type,
-                Count: event.participant.Equipment.MainHand.Count,
-                Quality: event.participant.Equipment.MainHand.Quality,
+                Type: participant.Equipment.MainHand.Type,
+                Count: participant.Equipment.MainHand.Count,
+                Quality: participant.Equipment.MainHand.Quality,
               }
             : null,
-          OffHand: event.participant.Equipment.OffHand
+          OffHand: participant.Equipment.OffHand
             ? {
-                Type: event.participant.Equipment.OffHand.Type,
-                Count: event.participant.Equipment.OffHand.Count,
-                Quality: event.participant.Equipment.OffHand.Quality,
+                Type: participant.Equipment.OffHand.Type,
+                Count: participant.Equipment.OffHand.Count,
+                Quality: participant.Equipment.OffHand.Quality,
               }
             : null,
-          Head: event.participant.Equipment.Head
+          Head: participant.Equipment.Head
             ? {
-                Type: event.participant.Equipment.Head.Type,
-                Count: event.participant.Equipment.Head.Count,
-                Quality: event.participant.Equipment.Head.Quality,
+                Type: participant.Equipment.Head.Type,
+                Count: participant.Equipment.Head.Count,
+                Quality: participant.Equipment.Head.Quality,
               }
             : null,
-          Armor: event.participant.Equipment.Armor
+          Armor: participant.Equipment.Armor
             ? {
-                Type: event.participant.Equipment.Armor.Type,
-                Count: event.participant.Equipment.Armor.Count,
-                Quality: event.participant.Equipment.Armor.Quality,
+                Type: participant.Equipment.Armor.Type,
+                Count: participant.Equipment.Armor.Count,
+                Quality: participant.Equipment.Armor.Quality,
               }
             : null,
-          Shoes: event.participant.Equipment.Shoes
+          Shoes: participant.Equipment.Shoes
             ? {
-                Type: event.participant.Equipment.Shoes.Type,
-                Count: event.participant.Equipment.Shoes.Count,
-                Quality: event.participant.Equipment.Shoes.Quality,
+                Type: participant.Equipment.Shoes.Type,
+                Count: participant.Equipment.Shoes.Count,
+                Quality: participant.Equipment.Shoes.Quality,
               }
             : null,
-          Bag: event.participant.Equipment.Bag
+          Bag: participant.Equipment.Bag
             ? {
-                Type: event.participant.Equipment.Bag.Type,
-                Count: event.participant.Equipment.Bag.Count,
-                Quality: event.participant.Equipment.Bag.Quality,
+                Type: participant.Equipment.Bag.Type,
+                Count: participant.Equipment.Bag.Count,
+                Quality: participant.Equipment.Bag.Quality,
               }
             : null,
-          Cape: event.participant.Equipment.Cape
+          Cape: participant.Equipment.Cape
             ? {
-                Type: event.participant.Equipment.Cape.Type,
-                Count: event.participant.Equipment.Cape.Count,
-                Quality: event.participant.Equipment.Cape.Quality,
+                Type: participant.Equipment.Cape.Type,
+                Count: participant.Equipment.Cape.Count,
+                Quality: participant.Equipment.Cape.Quality,
               }
             : null,
-          Mount: event.participant.Equipment.Mount
+          Mount: participant.Equipment.Mount
             ? {
-                Type: event.participant.Equipment.Mount.Type,
-                Count: event.participant.Equipment.Mount.Count,
-                Quality: event.participant.Equipment.Mount.Quality,
+                Type: participant.Equipment.Mount.Type,
+                Count: participant.Equipment.Mount.Count,
+                Quality: participant.Equipment.Mount.Quality,
               }
             : null,
-          Potion: event.participant.Equipment.Potion
+          Potion: participant.Equipment.Potion
             ? {
-                Type: event.participant.Equipment.Potion.Type,
-                Count: event.participant.Equipment.Potion.Count,
-                Quality: event.participant.Equipment.Potion.Quality,
+                Type: participant.Equipment.Potion.Type,
+                Count: participant.Equipment.Potion.Count,
+                Quality: participant.Equipment.Potion.Quality,
               }
             : null,
-          Food: event.participant.Equipment.Food
+          Food: participant.Equipment.Food
             ? {
-                Type: event.participant.Equipment.Food.Type,
-                Count: event.participant.Equipment.Food.Count,
-                Quality: event.participant.Equipment.Food.Quality,
+                Type: participant.Equipment.Food.Type,
+                Count: participant.Equipment.Food.Count,
+                Quality: participant.Equipment.Food.Quality,
               }
             : null,
         },
-        Inventory: event.participant.Inventory
-          ? event.participant.Inventory.map((inventoryItem: any) => {
+        Inventory: participant.Inventory
+          ? participant.Inventory.map((inventoryItem: any) => {
               if (inventoryItem) {
                 return {
                   Type: inventoryItem.Type,
