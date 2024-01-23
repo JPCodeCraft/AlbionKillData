@@ -169,3 +169,6 @@
 {"level":"info","message":"Ignoring event with ID 966129358 as it's ID is smaller than the latest event ID 966130233.","timestamp":"2024-01-23T13:44:14.829Z"}
 {"level":"info","message":"Ignoring event with ID 966129356 as it's ID is smaller than the latest event ID 966130233.","timestamp":"2024-01-23T13:44:14.829Z"}
 {"level":"info","message":"Successfully processed 251 kill events.","timestamp":"2024-01-23T13:44:14.829Z"}
+{"level":"info","message":"Downloaded 255 events","timestamp":"2024-01-23T13:48:55.289Z"}
+{"level":"info","message":"255 events left after removing duplicates","timestamp":"2024-01-23T13:48:55.290Z"}
+{"level":"info","message":"Successfully processed 255 kill events.","timestamp":"2024-01-23T13:48:55.340Z"}
