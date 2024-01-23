@@ -38,3 +38,6 @@
 2024-01-23T12:37:53.520Z - Ignoring event with ID 966098658 as it's Id is smaller than the latest event Id.
 2024-01-23T12:37:53.520Z - Ignoring event with ID 966098657 as it's Id is smaller than the latest event Id.
 2024-01-23T12:37:53.520Z - Successfully processed 255 kill events.
+2024-01-23T12:48:13.710Z - Downloaded 255 events
+2024-01-23T12:48:13.710Z - 255 events left after removing duplicates
+2024-01-23T12:48:13.755Z - Successfully processed 255 kill events.
