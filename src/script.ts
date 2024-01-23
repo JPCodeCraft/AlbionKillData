@@ -10,8 +10,63 @@ async function fetchData(): Promise<killEvent[]> {
       "https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=0"
     );
     return response.data.map((event: any) => ({
-      ...event,
+      numberOfParticipants: event.numberOfParticipants,
+      EventId: event.EventId,
       TimeStamp: new Date(event.TimeStamp),
+      Killer: {
+        Name: event.Killer.Name,
+        Id: event.Killer.Id,
+        AverageItemPower: event.Killer.AverageItemPower,
+        Equipment: {
+          MainHand: event.Killer.Equipment.MainHand,
+          OffHand: event.Killer.Equipment.OffHand,
+          Head: event.Killer.Equipment.Head,
+          Armor: event.Killer.Equipment.Armor,
+          Shoes: event.Killer.Equipment.Shoes,
+          Bag: event.Killer.Equipment.Bag,
+          Cape: event.Killer.Equipment.Cape,
+          Mount: event.Killer.Equipment.Mount,
+          Potion: event.Killer.Equipment.Potion,
+          Food: event.Killer.Equipment.Food,
+          Inventory: event.Killer.Equipment.Inventory,
+        },
+      },
+      Victim: {
+        Name: event.Victim.Name,
+        Id: event.Victim.Id,
+        AverageItemPower: event.Victim.AverageItemPower,
+        Equipment: {
+          MainHand: event.Victim.Equipment.MainHand,
+          OffHand: event.Victim.Equipment.OffHand,
+          Head: event.Victim.Equipment.Head,
+          Armor: event.Victim.Equipment.Armor,
+          Shoes: event.Victim.Equipment.Shoes,
+          Bag: event.Victim.Equipment.Bag,
+          Cape: event.Victim.Equipment.Cape,
+          Mount: event.Victim.Equipment.Mount,
+          Potion: event.Victim.Equipment.Potion,
+          Food: event.Victim.Equipment.Food,
+          Inventory: event.Victim.Equipment.Inventory,
+        },
+      },
+      Participants: event.Participants.map((participant: any) => ({
+        Name: participant.Name,
+        Id: participant.Id,
+        AverageItemPower: participant.AverageItemPower,
+        Equipment: {
+          MainHand: participant.Equipment.MainHand,
+          OffHand: participant.Equipment.OffHand,
+          Head: participant.Equipment.Head,
+          Armor: participant.Equipment.Armor,
+          Shoes: participant.Equipment.Shoes,
+          Bag: participant.Equipment.Bag,
+          Cape: participant.Equipment.Cape,
+          Mount: participant.Equipment.Mount,
+          Potion: participant.Equipment.Potion,
+          Food: participant.Equipment.Food,
+          Inventory: participant.Equipment.Inventory,
+        },
+      })),
     }));
   } catch (error) {
     console.error("Error fetching data:", error);
