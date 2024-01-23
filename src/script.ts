@@ -70,7 +70,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
       logger.info(
-        `Ignoring event with ID ${event.EventId} as it's ID is smaller than the latest event ID ${data.latestEventId}.`
+        `Ignoring event with ID ${event.EventId} as it's ID is smaller than the latest event ID ${data.latestEventId}`
       );
       return;
     }
@@ -155,7 +155,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     }
   });
 
-  logger.info(`Successfully processed ${killEvents.length} kill events.`);
+  logger.info(`Successfully processed ${killEvents.length} kill events`);
 }
 
 async function main() {
