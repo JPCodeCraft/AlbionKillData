@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import winston from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
+import moment from 'moment';
 import { KillEvent } from "./event-models";
 import { Data, KillType } from "./data-model";
 
@@ -11,8 +12,9 @@ const retentionDays = 7;
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.simple()
+    winston.format.printf(({ level, message, timestamp }) => {
+      return `${moment(timestamp).format('YYYY-MM-DD HH:mm:ss.SS')} ${level}: ${message}`;
+    })
   ),
   transports: [
     new DailyRotateFile({
