@@ -1,21 +1,29 @@
 import axios from "axios";
 import fs from "fs";
 import path from "path";
+import winston from 'winston';
+import DailyRotateFile from 'winston-daily-rotate-file';
 import { KillEvent } from "./event-models";
 import { Data, KillType } from "./data-model";
 
 const retentionDays = 7;
-const retentionTime = Date.now() - retentionDays * 24 * 60 * 60 * 1000;
 
-const logFilePath = path.join(__dirname, "..", "log.txt");
-const logStream = fs.createWriteStream(logFilePath, {
-  flags: "a",
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new DailyRotateFile({
+      filename: path.join(__dirname, '..', 'log-%DATE%.txt'),
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: `${retentionDays}d`
+    })
+  ]
 });
-console.log = function (...args: any[]) {
-  const message = `${new Date().toISOString()} - ${args.join(" ")}`;
-  logStream.write(message + "\n");
-  process.stdout.write(message + "\n");
-};
 
 async function fetchData(): Promise<KillEvent[]> {
   try {
@@ -36,7 +44,7 @@ async function fetchData(): Promise<KillEvent[]> {
       }))
     );
 
-    console.log(`Downloaded ${killEvents.length} events`);
+    logger.info(`Downloaded ${killEvents.length} events`);
 
     const uniqueKillEvents: KillEvent[] = Array.from(
       killEvents
@@ -44,13 +52,13 @@ async function fetchData(): Promise<KillEvent[]> {
         .values()
     );
 
-    console.log(
+    logger.info(
       `${uniqueKillEvents.length} events left after removing duplicates`
     );
 
     return uniqueKillEvents.sort((a, b) => b.EventId - a.EventId);
   } catch (error) {
-    console.log("Error fetching data:", error);
+    logger.error("Error fetching data:", error);
     throw error;
   }
 }
@@ -59,7 +67,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
   killEvents.forEach((event) => {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
-      console.log(
+      logger.info(
         `Ignoring event with ID ${event.EventId} as it's ID is smaller than the latest event ID ${data.latestEventId}.`
       );
       return;
@@ -145,7 +153,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     }
   });
 
-  console.log(`Successfully processed ${killEvents.length} kill events.`);
+  logger.info(`Successfully processed ${killEvents.length} kill events.`);
 }
 
 async function main() {
@@ -179,54 +187,31 @@ async function main() {
 
   // Write the updated data back to the file
   fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
-
-  // Reverse the order of the logs
-  if (fs.existsSync(logFilePath)) {
-    const logData = fs.readFileSync(logFilePath, "utf-8");
-    const logLines = logData.split("\n");
-
-    const sortedLogLines = logLines.sort((a, b) => {
-      const dateA = new Date(a.split(" - ")[0]);
-      const dateB = new Date(b.split(" - ")[0]);
-      return dateB.getTime() - dateA.getTime(); // sort in descending order
-    });
-
-    fs.writeFileSync(logFilePath, sortedLogLines.join("\n"), "utf-8");
-  }
 }
 
 main().catch((error) => {
-  console.log("An error occurred in the main function:", error);
+  logger.error("An error occurred in the main function:", error);
   process.exit(1);
 });
 
 function cleanupOldData(data: Data): void {
+  // Calculate the date retentionDays days ago
+  const retentionDate = new Date();
+  retentionDate.setDate(retentionDate.getDate() - retentionDays);
+
   // Cleanup old events
   data.killTypeData.forEach((ktd) => {
     const oldData = ktd.dateData.filter(
-      (dd) => dd.date.getTime() < retentionTime
+      (dd) => dd.date < retentionDate
     );
     oldData.forEach((dd) => {
-      console.log(
+      logger.info(
         `Deleted data from ${dd.date.toISOString()} for kill type ${ktd.type}`
       );
     });
 
     ktd.dateData = ktd.dateData.filter(
-      (dd) => dd.date.getTime() >= retentionTime
+      (dd) => dd.date >= retentionDate
     );
   });
-
-  // Cleanup old log entries
-  if (fs.existsSync(logFilePath)) {
-    const logData = fs.readFileSync(logFilePath, "utf-8");
-    const logLines = logData.split("\n");
-
-    const filteredLogLines = logLines.filter((line) => {
-      const timestamp = new Date(line.split(" - ")[0]).getTime();
-      return timestamp >= retentionTime;
-    });
-
-    fs.writeFileSync(logFilePath, filteredLogLines.join("\n"), "utf-8");
-  }
 }
