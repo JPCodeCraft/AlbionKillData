@@ -1,6 +1,8 @@
 import axios from "axios";
 import fs from "fs";
 import path from "path";
+import { killEvent } from "./event-models";
+import { data } from "./data-model";
 
 async function fetchData(): Promise<killEvent[]> {
   try {

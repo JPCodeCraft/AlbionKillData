@@ -1,4 +1,4 @@
-interface killEvent {
+export interface killEvent {
   numberOfParticipants: number;
   EventId: number;
   TimeStamp: Date;
@@ -7,27 +7,27 @@ interface killEvent {
   Participants: player[];
 }
 
-interface equipment {
-    MainHand: item;
-    OffHand: item;
-    Head: item;
-    Armor: item;
-    Shoes: item;
-    Bag: item;
-    Cape: item;
-    Mount: item;
-    Potion: item;
-    Food: item;
-    Inventory: (item | null)[];
-    }
+export interface equipment {
+  MainHand: item;
+  OffHand: item;
+  Head: item;
+  Armor: item;
+  Shoes: item;
+  Bag: item;
+  Cape: item;
+  Mount: item;
+  Potion: item;
+  Food: item;
+  Inventory: (item | null)[];
+}
 
-interface item {
+export interface item {
   Type: string;
   Count: number;
   Quality: number;
 }
 
-interface player {
+export interface player {
   Name: string;
   Id: number;
   AverageItemPower: number;

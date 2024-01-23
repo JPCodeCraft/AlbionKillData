@@ -1,14 +1,14 @@
-interface data{
+export interface data{
     latestEventId: number;
     dateData: dateData[];
 }
 
-interface dateData{
+export interface dateData{
     date: Date;
     itemData: itemData[];
 }
 
-interface itemData{
+export interface itemData{
     Type: string;
     killerAmount: number;
     victimAmount: number;
