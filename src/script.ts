@@ -140,6 +140,8 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
       dateDataItem.itemData.sort((a, b) => b.killerCount - a.killerCount);
     }
   });
+
+  console.log(`Successfully processed ${killEvents.length} kill events.`);
 }
 
 async function main() {
