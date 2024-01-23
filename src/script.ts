@@ -184,8 +184,14 @@ async function main() {
   if (fs.existsSync(logFilePath)) {
     const logData = fs.readFileSync(logFilePath, "utf-8");
     const logLines = logData.split("\n");
-    const reversedLogLines = logLines.reverse();
-    fs.writeFileSync(logFilePath, reversedLogLines.join("\n"), "utf-8");
+
+    const sortedLogLines = logLines.sort((a, b) => {
+      const dateA = new Date(a.split(" - ")[0]);
+      const dateB = new Date(b.split(" - ")[0]);
+      return dateB.getTime() - dateA.getTime(); // sort in descending order
+    });
+
+    fs.writeFileSync(logFilePath, sortedLogLines.join("\n"), "utf-8");
   }
 }
 
