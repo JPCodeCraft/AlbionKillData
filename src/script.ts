@@ -179,6 +179,14 @@ async function main() {
 
   // Write the updated data back to the file
   fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
+
+  // Reverse the order of the logs
+  if (fs.existsSync(logFilePath)) {
+    const logData = fs.readFileSync(logFilePath, "utf-8");
+    const logLines = logData.split("\n");
+    const reversedLogLines = logLines.reverse();
+    fs.writeFileSync(logFilePath, reversedLogLines.join("\n"), "utf-8");
+  }
 }
 
 main().catch((error) => {
