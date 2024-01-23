@@ -8,6 +8,7 @@ import { KillEvent } from "./event-models";
 import { Data, KillType } from "./data-model";
 
 const retentionDays = 7;
+const paralelAxiosRequests = 8;
 
 const logger = winston.createLogger({
   level: 'info',
@@ -29,7 +30,7 @@ const logger = winston.createLogger({
 
 async function fetchData(): Promise<KillEvent[]> {
   try {
-    const requests = Array.from({ length: 5 }, (_, i) =>
+    const requests = Array.from({ length: paralelAxiosRequests }, (_, i) =>
       axios.get(
         `https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=${
           i * 51
