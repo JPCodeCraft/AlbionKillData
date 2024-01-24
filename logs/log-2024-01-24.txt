@@ -55,3 +55,17 @@
 2024-01-24 04:46:19.62 info: Ignoring event with ID 966682588 as it's ID is smaller than the latest event ID 966682590
 2024-01-24 04:46:19.62 info: Ignoring event with ID 966682586 as it's ID is smaller than the latest event ID 966682590
 2024-01-24 04:46:19.62 info: Successfully processed 408 kill events
+2024-01-24 04:53:02.30 info: Downloaded 408 events
+2024-01-24 04:53:02.30 info: 406 events left after removing duplicates
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685423 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685418 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685411 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685400 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685396 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685394 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685386 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685376 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685364 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685360 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Ignoring event with ID 966685352 as it's ID is smaller than the latest event ID 966685423
+2024-01-24 04:53:02.38 info: Successfully processed 406 kill events
