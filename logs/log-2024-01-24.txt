@@ -49,3 +49,9 @@
 2024-01-24 04:39:46.37 info: Downloaded 408 events
 2024-01-24 04:39:46.37 info: 405 events left after removing duplicates
 2024-01-24 04:39:46.46 info: Successfully processed 405 kill events
+2024-01-24 04:46:19.55 info: Downloaded 408 events
+2024-01-24 04:46:19.55 info: 408 events left after removing duplicates
+2024-01-24 04:46:19.62 info: Ignoring event with ID 966682590 as it's ID is smaller than the latest event ID 966682590
+2024-01-24 04:46:19.62 info: Ignoring event with ID 966682588 as it's ID is smaller than the latest event ID 966682590
+2024-01-24 04:46:19.62 info: Ignoring event with ID 966682586 as it's ID is smaller than the latest event ID 966682590
+2024-01-24 04:46:19.62 info: Successfully processed 408 kill events
