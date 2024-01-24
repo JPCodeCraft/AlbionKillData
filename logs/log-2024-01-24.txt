@@ -4067,3 +4067,27 @@
 2024-01-24 11:52:31.29 info: Downloaded 408 events
 2024-01-24 11:52:31.29 info: 408 events left after removing duplicates
 2024-01-24 11:52:31.38 info: Successfully processed 408 kill events
+2024-01-24 11:58:50.25 info: Downloaded 408 events
+2024-01-24 11:58:50.26 info: 408 events left after removing duplicates
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812897 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812892 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812889 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812882 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812874 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812872 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812870 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812862 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812850 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812848 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812843 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812839 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812837 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812798 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812793 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812791 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812789 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812780 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812777 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.34 info: Ignoring event with ID 966812774 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.35 info: Ignoring event with ID 966812770 as it's ID is smaller than the latest event ID 966812897
+2024-01-24 11:58:50.35 info: Successfully processed 408 kill events
