@@ -69,3 +69,6 @@
 2024-01-24 04:53:02.38 info: Ignoring event with ID 966685360 as it's ID is smaller than the latest event ID 966685423
 2024-01-24 04:53:02.38 info: Ignoring event with ID 966685352 as it's ID is smaller than the latest event ID 966685423
 2024-01-24 04:53:02.38 info: Successfully processed 406 kill events
+2024-01-24 04:59:39.32 info: Downloaded 408 events
+2024-01-24 04:59:39.32 info: 406 events left after removing duplicates
+2024-01-24 04:59:39.40 info: Successfully processed 406 kill events
