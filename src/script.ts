@@ -1,54 +1,76 @@
 import axios from "axios";
 import fs from "fs";
 import path from "path";
-import winston from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
-import moment from 'moment';
+import winston from "winston";
+import DailyRotateFile from "winston-daily-rotate-file";
+import moment from "moment";
 import { KillEvent } from "./event-models";
 import { Data, KillType } from "./data-model";
 
 const retentionDays = 7;
-const paralelAxiosRequests = 8;
+const paralelAxiosRequests = 5;
+const sequentialAxiosRequests = 3;
 
 const logger = winston.createLogger({
-  level: 'info',
+  level: "info",
   format: winston.format.combine(
     winston.format.printf(({ level, message, timestamp }) => {
-      return `${moment(timestamp).format('YYYY-MM-DD HH:mm:ss.SS')} ${level}: ${message}`;
+      return `${moment(timestamp).format(
+        "YYYY-MM-DD HH:mm:ss.SS"
+      )} ${level}: ${message}`;
     })
   ),
   transports: [
     new DailyRotateFile({
-      filename: path.join(__dirname, '..', 'logs', 'log-%DATE%.txt'),
-      datePattern: 'YYYY-MM-DD',
+      filename: path.join(__dirname, "..", "logs", "log-%DATE%.txt"),
+      datePattern: "YYYY-MM-DD",
       zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: `${retentionDays}d`
-    })
-  ]
+      maxSize: "20m",
+      maxFiles: `${retentionDays}d`,
+    }),
+  ],
 });
 
 async function fetchData(): Promise<KillEvent[]> {
   try {
-    const requests = Array.from({ length: paralelAxiosRequests }, (_, i) =>
-      axios.get(
-        `https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=${
-          i * 51
-        }`
-      )
+    let killEvents: KillEvent[] = [];
+
+    for (let j = 0; j < sequentialAxiosRequests; j++) {
+      const requests = Array.from({ length: paralelAxiosRequests }, (_, i) =>
+        axios.get(
+          `https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=${
+            (i + j * paralelAxiosRequests) * 51
+          }`
+        )
+      );
+
+      const responses = await Promise.all(requests);
+
+      const newKillEvents = responses.flatMap((response) =>
+        response.data.map((event: any) => ({
+          ...event,
+          TimeStamp: new Date(event.TimeStamp),
+        }))
+      );
+
+      killEvents = [...killEvents, ...newKillEvents];
+    }
+
+    // Make one final request with an offset of 0 to get the events that were added during our calls
+    const finalResponse = await axios.get(
+      `https://gameinfo.albiononline.com/api/gameinfo/events?limit=51&offset=0`
     );
 
-    const responses = await Promise.all(requests);
+    const finalKillEvents = finalResponse.data.map((event: any) => ({
+      ...event,
+      TimeStamp: new Date(event.TimeStamp),
+    }));
 
-    const killEvents = responses.flatMap((response) =>
-      response.data.map((event: any) => ({
-        ...event,
-        TimeStamp: new Date(event.TimeStamp),
-      }))
-    );
+    killEvents = [...killEvents, ...finalKillEvents];
 
     logger.info(`Downloaded ${killEvents.length} events`);
 
+    // Remove duplicate events
     const uniqueKillEvents: KillEvent[] = Array.from(
       killEvents
         .reduce((map, event) => map.set(event.EventId, event), new Map())
@@ -59,7 +81,8 @@ async function fetchData(): Promise<KillEvent[]> {
       `${uniqueKillEvents.length} events left after removing duplicates`
     );
 
-    return uniqueKillEvents.sort((a, b) => b.EventId - a.EventId);
+    // Sort the events by EventId in ascending order
+    return uniqueKillEvents.sort((a, b) => a.EventId - b.EventId);
   } catch (error) {
     logger.error("Error fetching data:", error);
     throw error;
@@ -75,6 +98,10 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
       );
       return;
     }
+
+    // Update the latestEventId, this can be done because the events are sorted by EventId in ascending order
+    data.latestEventId = event.EventId;
+
     // Determine the KillType for the event
     let killType: KillType;
     const participantsCount = event.Participants.length;
@@ -160,8 +187,6 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
 }
 
 async function main() {
-  const killEvents: KillEvent[] = await fetchData();
-
   // Define the path to the data.json file
   const dataFilePath = path.resolve(__dirname, "..", "data.json");
 
@@ -177,13 +202,13 @@ async function main() {
     });
   } else {
     data = { latestEventId: 0, killTypeData: [] };
-    fs.writeFileSync(dataFilePath, JSON.stringify(data), "utf-8");
   }
+
+  // Fetch the killEvents
+  const killEvents: KillEvent[] = await fetchData();
 
   // Process the killEvents
   processKillEvents(killEvents, data);
-
-  data.latestEventId = killEvents[0].EventId;
 
   // Cleanup old data
   cleanupOldData(data);
@@ -204,17 +229,13 @@ function cleanupOldData(data: Data): void {
 
   // Cleanup old events
   data.killTypeData.forEach((ktd) => {
-    const oldData = ktd.dateData.filter(
-      (dd) => dd.date < retentionDate
-    );
+    const oldData = ktd.dateData.filter((dd) => dd.date < retentionDate);
     oldData.forEach((dd) => {
       logger.info(
         `Deleted data from ${dd.date.toISOString()} for kill type ${ktd.type}`
       );
     });
 
-    ktd.dateData = ktd.dateData.filter(
-      (dd) => dd.date >= retentionDate
-    );
+    ktd.dateData = ktd.dateData.filter((dd) => dd.date >= retentionDate);
   });
 }
