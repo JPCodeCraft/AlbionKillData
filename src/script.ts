@@ -94,12 +94,12 @@ async function fetchData(): Promise<KillEvent[]> {
 }
 
 function processKillEvents(killEvents: KillEvent[], data: Data): void {
+  let ignoredEventsCount = 0;
+
   killEvents.forEach((event) => {
     // Ignore events that have already been processed
     if (event.EventId <= data.latestEventId) {
-      logger.info(
-        `Ignoring event with ID ${event.EventId} as it's ID is smaller than the latest event ID ${data.latestEventId}`
-      );
+      ignoredEventsCount++;
       return;
     }
 
@@ -187,6 +187,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     }
   });
 
+  logger.info(`Ignored ${ignoredEventsCount} events with ID smaller than the latest event ID`);
   logger.info(`Successfully processed ${killEvents.length} kill events`);
 }
 
