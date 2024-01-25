@@ -55,6 +55,8 @@ async function fetchData(): Promise<KillEvent[]> {
       );
 
       killEvents = [...killEvents, ...newKillEvents];
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
     // Make one final request with an offset of 0 to get the events that were added during our calls
