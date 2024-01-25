@@ -8,8 +8,9 @@ import { KillEvent } from "./event-models";
 import { Data, KillType } from "./data-model";
 
 const retentionDays = 7;
-const paralelAxiosRequests = 5;
+const paralelAxiosRequests = 6;
 const sequentialAxiosRequests = 3;
+// attention: max offset is 1000?
 
 const logger = winston.createLogger({
   level: "info",
@@ -56,7 +57,7 @@ async function fetchData(): Promise<KillEvent[]> {
 
       killEvents = [...killEvents, ...newKillEvents];
 
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
 
     // Make one final request with an offset of 0 to get the events that were added during our calls
