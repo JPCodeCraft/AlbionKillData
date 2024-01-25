@@ -9,7 +9,7 @@ import { Data, KillType } from "./data-model";
 
 const retentionDays = 7;
 const paralelAxiosRequests = 5;
-const sequentialAxiosRequests = 3;
+const sequentialAxiosRequests = 5;
 
 const logger = winston.createLogger({
   level: "info",
