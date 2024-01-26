@@ -108,7 +108,8 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
 
     // Determine the KillType for the event
     let killType: KillType;
-    const participantsCount = event.Participants.length;
+    // For some reason the API doesn't show more than 4 participants, so we are using the groupMemberCount property
+    const participantsCount = Math.max(event.Participants.length, event.groupMemberCount);
     if (participantsCount <= 1) {
       killType = "solo";
     } else if (participantsCount <= 2) {

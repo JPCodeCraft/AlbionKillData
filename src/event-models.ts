@@ -1,5 +1,6 @@
 export interface KillEvent {
   numberOfParticipants: number;
+  groupMemberCount: number;
   EventId: number;
   TimeStamp: Date;
   Killer: Player;
