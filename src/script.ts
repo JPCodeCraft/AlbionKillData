@@ -140,6 +140,15 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
         event.TimeStamp.toISOString().split("T")[0]
     );
 
+    if (dateDataItem){
+      if (dateDataItem.aggressorsCount === null){
+        dateDataItem.aggressorsCount = 0;
+      }
+      if (dateDataItem.victimsCount === null){
+        dateDataItem.victimsCount = 0;
+      }
+    }
+
     // If there's no dateData for this date, create one
     if (!dateDataItem) {
       const dateWithZeroTime = new Date(event.TimeStamp.setHours(0, 0, 0, 0));
