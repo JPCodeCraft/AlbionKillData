@@ -13,6 +13,8 @@ export interface KillTypeData {
 export interface DateData{
     date: Date;
     eventsCount: number;
+    aggressorsCount: number;
+    victimsCount: number;
     itemData: ItemData[];
 }
 

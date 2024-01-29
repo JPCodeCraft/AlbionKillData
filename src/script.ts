@@ -143,12 +143,14 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     // If there's no dateData for this date, create one
     if (!dateDataItem) {
       const dateWithZeroTime = new Date(event.TimeStamp.setHours(0, 0, 0, 0));
-      dateDataItem = { date: dateWithZeroTime, eventsCount: 0, itemData: [] };
+      dateDataItem = { date: dateWithZeroTime, eventsCount: 0, aggressorsCount: 0, victimsCount: 0, itemData: [] };
       killTypeDataItem.dateData.push(dateDataItem);
     }
 
     // Increment the eventsCount
     dateDataItem.eventsCount++;
+    dateDataItem.aggressorsCount += event.numberOfParticipants;
+    dateDataItem.victimsCount++;
 
     // Sum the amounts of items based on the Type
     [event.Killer, event.Victim, ...event.Participants].forEach((player) => {
