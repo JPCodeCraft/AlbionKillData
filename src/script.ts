@@ -158,7 +158,7 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
 
     // Increment the eventsCount
     dateDataItem.eventsCount++;
-    dateDataItem.aggressorsCount += event.numberOfParticipants;
+    dateDataItem.aggressorsCount += Math.max(event.numberOfParticipants, 1); //sometimes the participants counts is 0. Why?
     dateDataItem.victimsCount++;
 
     // Sum the amounts of items based on the Type
