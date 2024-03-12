@@ -399,3 +399,7 @@
 2024-03-12 12:45:43.86 info: 912 events left after removing duplicates
 2024-03-12 12:45:43.97 info: Ignored 320 events with ID smaller than the latest event ID
 2024-03-12 12:45:43.97 info: Successfully processed 912 kill events
+2024-03-12 12:53:39.42 info: Downloaded 969 events
+2024-03-12 12:53:39.42 info: 895 events left after removing duplicates
+2024-03-12 12:53:39.49 info: Ignored 456 events with ID smaller than the latest event ID
+2024-03-12 12:53:39.49 info: Successfully processed 895 kill events
