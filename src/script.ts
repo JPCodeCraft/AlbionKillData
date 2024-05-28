@@ -243,9 +243,11 @@ async function main() {
       break; // If fetchData is successful, break the loop
     } catch (error) {
       attempts++;
-      console.error(
-        `Attempt ${attempts} to fetch data failed with error: ${error.message}`
-      );
+      if (error instanceof Error) {
+        console.error(
+          `Attempt ${attempts} to fetch data failed with error: ${error.message}`
+        );
+      }
       if (attempts === maxAttempts) {
         console.error("Maximum attempts reached. Exiting script.");
         process.exit(0);
