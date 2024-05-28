@@ -109,7 +109,10 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     // Determine the KillType for the event
     let killType: KillType;
     // For some reason the API doesn't show more than 4 participants, so we are using the groupMemberCount property
-    const participantsCount = Math.max(event.Participants.length, event.groupMemberCount);
+    const participantsCount = Math.max(
+      event.Participants.length,
+      event.groupMemberCount
+    );
     if (participantsCount <= 1) {
       killType = "solo";
     } else if (participantsCount <= 2) {
@@ -140,11 +143,11 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
         event.TimeStamp.toISOString().split("T")[0]
     );
 
-    if (dateDataItem){
-      if (dateDataItem.aggressorsCount === null){
+    if (dateDataItem) {
+      if (dateDataItem.aggressorsCount === null) {
         dateDataItem.aggressorsCount = 0;
       }
-      if (dateDataItem.victimsCount === null){
+      if (dateDataItem.victimsCount === null) {
         dateDataItem.victimsCount = 0;
       }
     }
@@ -152,7 +155,13 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     // If there's no dateData for this date, create one
     if (!dateDataItem) {
       const dateWithZeroTime = new Date(event.TimeStamp.setHours(0, 0, 0, 0));
-      dateDataItem = { date: dateWithZeroTime, eventsCount: 0, aggressorsCount: 0, victimsCount: 0, itemData: [] };
+      dateDataItem = {
+        date: dateWithZeroTime,
+        eventsCount: 0,
+        aggressorsCount: 0,
+        victimsCount: 0,
+        itemData: [],
+      };
       killTypeDataItem.dateData.push(dateDataItem);
     }
 
@@ -199,7 +208,9 @@ function processKillEvents(killEvents: KillEvent[], data: Data): void {
     }
   });
 
-  logger.info(`Ignored ${ignoredEventsCount} events with ID smaller than the latest event ID`);
+  logger.info(
+    `Ignored ${ignoredEventsCount} events with ID smaller than the latest event ID`
+  );
   logger.info(`Successfully processed ${killEvents.length} kill events`);
 }
 
@@ -222,7 +233,25 @@ async function main() {
   }
 
   // Fetch the killEvents
-  const killEvents: KillEvent[] = await fetchData();
+  let killEvents: KillEvent[] = [];
+  let attempts = 0;
+  const maxAttempts = 3;
+
+  while (attempts < maxAttempts) {
+    try {
+      killEvents = await fetchData();
+      break; // If fetchData is successful, break the loop
+    } catch (error) {
+      attempts++;
+      console.error(
+        `Attempt ${attempts} to fetch data failed with error: ${error.message}`
+      );
+      if (attempts === maxAttempts) {
+        console.error("Maximum attempts reached. Exiting script.");
+        process.exit(0);
+      }
+    }
+  }
 
   // Process the killEvents
   processKillEvents(killEvents, data);
