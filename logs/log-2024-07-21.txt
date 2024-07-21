@@ -10,3 +10,7 @@
 2024-07-21 00:51:14.83 info: Deleted data from 2024-07-14T00:00:00.000Z for kill type 3-5
 2024-07-21 00:51:14.83 info: Deleted data from 2024-07-14T00:00:00.000Z for kill type 6-10
 2024-07-21 00:51:14.83 info: Deleted data from 2024-07-14T00:00:00.000Z for kill type >10
+2024-07-21 01:21:37.06 info: Downloaded 969 events
+2024-07-21 01:21:37.07 info: 879 events left after removing duplicates
+2024-07-21 01:21:37.16 info: Ignored 0 events with ID smaller than the latest event ID
+2024-07-21 01:21:37.16 info: Successfully processed 879 kill events
