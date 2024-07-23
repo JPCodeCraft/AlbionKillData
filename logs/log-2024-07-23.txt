@@ -532,3 +532,7 @@
 2024-07-23 17:29:30.78 info: 896 events left after removing duplicates
 2024-07-23 17:29:30.86 info: Ignored 466 events with ID smaller than the latest event ID
 2024-07-23 17:29:30.86 info: Successfully processed 896 kill events
+2024-07-23 17:35:39.19 info: Downloaded 969 events
+2024-07-23 17:35:39.19 info: 847 events left after removing duplicates
+2024-07-23 17:35:39.25 info: Ignored 552 events with ID smaller than the latest event ID
+2024-07-23 17:35:39.25 info: Successfully processed 847 kill events
