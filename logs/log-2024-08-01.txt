@@ -501,3 +501,7 @@
 2024-08-01 16:29:26.23 info: 909 events left after removing duplicates
 2024-08-01 16:29:26.32 info: Ignored 388 events with ID smaller than the latest event ID
 2024-08-01 16:29:26.32 info: Successfully processed 909 kill events
+2024-08-01 16:37:48.89 info: Downloaded 969 events
+2024-08-01 16:37:48.89 info: 804 events left after removing duplicates
+2024-08-01 16:37:48.97 info: Ignored 405 events with ID smaller than the latest event ID
+2024-08-01 16:37:48.97 info: Successfully processed 804 kill events
