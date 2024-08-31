@@ -7,3 +7,6 @@
 2024-08-31 00:00:45.31 info: Deleted data from 2024-08-24T00:00:00.000Z for kill type 3-5
 2024-08-31 00:00:45.31 info: Deleted data from 2024-08-24T00:00:00.000Z for kill type 6-10
 2024-08-31 00:00:45.31 info: Deleted data from 2024-08-24T00:00:00.000Z for kill type >10
+2024-08-31 00:27:44.76 error: Error fetching data: Request failed with status code 504
+2024-08-31 00:28:14.85 error: Error fetching data: Request failed with status code 504
+2024-08-31 00:28:44.94 error: Error fetching data: Request failed with status code 504
