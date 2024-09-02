@@ -206,3 +206,7 @@
 2024-09-02 08:32:54.07 info: 826 events left after removing duplicates
 2024-09-02 08:32:54.20 info: Ignored 0 events with ID smaller than the latest event ID
 2024-09-02 08:32:54.20 info: Successfully processed 826 kill events
+2024-09-02 08:40:13.71 info: Downloaded 969 events
+2024-09-02 08:40:13.71 info: 856 events left after removing duplicates
+2024-09-02 08:40:13.80 info: Ignored 343 events with ID smaller than the latest event ID
+2024-09-02 08:40:13.80 info: Successfully processed 856 kill events
