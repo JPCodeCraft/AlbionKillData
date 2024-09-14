@@ -1,0 +1,11 @@
+2024-09-14 00:03:24.40 error: Error fetching data: Request failed with status code 504
+2024-09-14 00:03:54.46 error: Error fetching data: Request failed with status code 504
+2024-09-14 00:05:12.29 info: Downloaded 969 events
+2024-09-14 00:05:12.29 info: 810 events left after removing duplicates
+2024-09-14 00:05:12.38 info: Ignored 287 events with ID smaller than the latest event ID
+2024-09-14 00:05:12.38 info: Successfully processed 810 kill events
+2024-09-14 00:05:12.38 info: Deleted data from 2024-09-07T00:00:00.000Z for kill type duo
+2024-09-14 00:05:12.38 info: Deleted data from 2024-09-07T00:00:00.000Z for kill type solo
+2024-09-14 00:05:12.38 info: Deleted data from 2024-09-07T00:00:00.000Z for kill type 3-5
+2024-09-14 00:05:12.39 info: Deleted data from 2024-09-07T00:00:00.000Z for kill type 6-10
+2024-09-14 00:05:12.39 info: Deleted data from 2024-09-07T00:00:00.000Z for kill type >10
