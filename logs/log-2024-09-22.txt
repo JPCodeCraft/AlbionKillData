@@ -28,3 +28,6 @@
 2024-09-22 03:11:18.52 info: Deleted data from 2024-09-15T00:00:00.000Z for kill type 3-5
 2024-09-22 03:11:18.52 info: Deleted data from 2024-09-15T00:00:00.000Z for kill type 6-10
 2024-09-22 03:11:18.52 info: Deleted data from 2024-09-15T00:00:00.000Z for kill type >10
+2024-09-22 03:22:57.67 error: Error fetching data: Request failed with status code 504
+2024-09-22 03:23:27.79 error: Error fetching data: Request failed with status code 504
+2024-09-22 03:23:57.84 error: Error fetching data: Request failed with status code 504
