@@ -71,3 +71,7 @@
 2024-09-25 04:29:15.19 error: Error fetching data: Request failed with status code 504
 2024-09-25 04:29:45.66 error: Error fetching data: Request failed with status code 504
 2024-09-25 04:30:22.82 error: Error fetching data: Request failed with status code 504
+2024-09-25 04:38:24.43 info: Downloaded 969 events
+2024-09-25 04:38:24.43 info: 843 events left after removing duplicates
+2024-09-25 04:38:24.56 info: Ignored 0 events with ID smaller than the latest event ID
+2024-09-25 04:38:24.56 info: Successfully processed 843 kill events
