@@ -7,3 +7,6 @@
 2024-09-30 00:29:20.98 info: Deleted data from 2024-09-23T00:00:00.000Z for kill type 3-5
 2024-09-30 00:29:20.98 info: Deleted data from 2024-09-23T00:00:00.000Z for kill type 6-10
 2024-09-30 00:29:20.98 info: Deleted data from 2024-09-23T00:00:00.000Z for kill type >10
+2024-09-30 00:49:54.74 error: Error fetching data: Request failed with status code 502
+2024-09-30 00:49:54.77 error: Error fetching data: Request failed with status code 502
+2024-09-30 00:49:54.81 error: Error fetching data: Request failed with status code 502
