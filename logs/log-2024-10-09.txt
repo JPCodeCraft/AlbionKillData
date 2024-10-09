@@ -92,3 +92,9 @@
 2024-10-09 04:51:17.82 info: 918 events left after removing duplicates
 2024-10-09 04:51:17.93 info: Ignored 239 events with ID smaller than the latest event ID
 2024-10-09 04:51:17.93 info: Successfully processed 918 kill events
+2024-10-09 04:57:05.59 error: Error fetching data: Request failed with status code 504
+2024-10-09 04:57:35.70 error: Error fetching data: Request failed with status code 504
+2024-10-09 04:58:42.70 info: Downloaded 969 events
+2024-10-09 04:58:42.70 info: 733 events left after removing duplicates
+2024-10-09 04:58:42.78 info: Ignored 257 events with ID smaller than the latest event ID
+2024-10-09 04:58:42.78 info: Successfully processed 733 kill events
