@@ -589,3 +589,8 @@
 2024-10-10 20:51:46.41 info: 882 events left after removing duplicates
 2024-10-10 20:51:46.49 info: Ignored 477 events with ID smaller than the latest event ID
 2024-10-10 20:51:46.49 info: Successfully processed 882 kill events
+2024-10-10 20:56:48.86 error: Error fetching data: read ECONNRESET
+2024-10-10 20:57:07.78 info: Downloaded 969 events
+2024-10-10 20:57:07.78 info: 868 events left after removing duplicates
+2024-10-10 20:57:07.86 info: Ignored 505 events with ID smaller than the latest event ID
+2024-10-10 20:57:07.86 info: Successfully processed 868 kill events
