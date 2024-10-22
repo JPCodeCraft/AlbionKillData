@@ -440,3 +440,7 @@
 2024-10-22 16:49:30.26 info: 807 events left after removing duplicates
 2024-10-22 16:49:30.34 info: Ignored 440 events with ID smaller than the latest event ID
 2024-10-22 16:49:30.34 info: Successfully processed 807 kill events
+2024-10-22 16:54:02.16 info: Downloaded 969 events
+2024-10-22 16:54:02.16 info: 885 events left after removing duplicates
+2024-10-22 16:54:02.20 info: Ignored 697 events with ID smaller than the latest event ID
+2024-10-22 16:54:02.20 info: Successfully processed 885 kill events
