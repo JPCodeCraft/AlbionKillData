@@ -656,3 +656,7 @@
 2024-10-26 21:45:15.25 info: 846 events left after removing duplicates
 2024-10-26 21:45:15.32 info: Ignored 474 events with ID smaller than the latest event ID
 2024-10-26 21:45:15.32 info: Successfully processed 846 kill events
+2024-10-26 21:51:17.28 info: Downloaded 969 events
+2024-10-26 21:51:17.28 info: 867 events left after removing duplicates
+2024-10-26 21:51:17.38 info: Ignored 383 events with ID smaller than the latest event ID
+2024-10-26 21:51:17.38 info: Successfully processed 867 kill events
