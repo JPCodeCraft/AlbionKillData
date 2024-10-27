@@ -1,0 +1,9 @@
+2024-10-27 00:16:40.38 info: Downloaded 969 events
+2024-10-27 00:16:40.38 info: 905 events left after removing duplicates
+2024-10-27 00:16:40.54 info: Ignored 0 events with ID smaller than the latest event ID
+2024-10-27 00:16:40.54 info: Successfully processed 905 kill events
+2024-10-27 00:16:40.54 info: Deleted data from 2024-10-20T00:00:00.000Z for kill type duo
+2024-10-27 00:16:40.54 info: Deleted data from 2024-10-20T00:00:00.000Z for kill type solo
+2024-10-27 00:16:40.54 info: Deleted data from 2024-10-20T00:00:00.000Z for kill type 3-5
+2024-10-27 00:16:40.54 info: Deleted data from 2024-10-20T00:00:00.000Z for kill type 6-10
+2024-10-27 00:16:40.54 info: Deleted data from 2024-10-20T00:00:00.000Z for kill type >10
