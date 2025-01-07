@@ -388,3 +388,8 @@
 2025-01-07 16:59:56.67 info: 904 events left after removing duplicates
 2025-01-07 16:59:56.74 info: Ignored 554 events with ID smaller than the latest event ID
 2025-01-07 16:59:56.74 info: Successfully processed 904 kill events
+2025-01-07 17:07:55.91 error: Error fetching data: Request failed with status code 504
+2025-01-07 17:09:04.33 info: Downloaded 969 events
+2025-01-07 17:09:04.33 info: 898 events left after removing duplicates
+2025-01-07 17:09:04.41 info: Ignored 452 events with ID smaller than the latest event ID
+2025-01-07 17:09:04.41 info: Successfully processed 898 kill events
