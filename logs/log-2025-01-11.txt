@@ -477,3 +477,8 @@
 2025-01-11 17:39:25.49 error: Error fetching data: read ECONNRESET
 2025-01-11 17:40:58.60 error: Error fetching data: Request failed with status code 504
 2025-01-11 17:42:05.65 error: Error fetching data: Request failed with status code 504
+2025-01-11 17:45:18.20 error: Error fetching data: Request failed with status code 504
+2025-01-11 17:46:19.57 info: Downloaded 969 events
+2025-01-11 17:46:19.57 info: 805 events left after removing duplicates
+2025-01-11 17:46:19.70 info: Ignored 0 events with ID smaller than the latest event ID
+2025-01-11 17:46:19.70 info: Successfully processed 805 kill events
