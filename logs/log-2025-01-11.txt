@@ -474,3 +474,6 @@
 2025-01-11 17:35:22.04 info: 849 events left after removing duplicates
 2025-01-11 17:35:22.13 info: Ignored 340 events with ID smaller than the latest event ID
 2025-01-11 17:35:22.13 info: Successfully processed 849 kill events
+2025-01-11 17:39:25.49 error: Error fetching data: read ECONNRESET
+2025-01-11 17:40:58.60 error: Error fetching data: Request failed with status code 504
+2025-01-11 17:42:05.65 error: Error fetching data: Request failed with status code 504
