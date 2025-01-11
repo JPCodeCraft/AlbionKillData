@@ -600,3 +600,7 @@
 2025-01-11 21:07:22.63 info: 922 events left after removing duplicates
 2025-01-11 21:07:22.79 info: Ignored 284 events with ID smaller than the latest event ID
 2025-01-11 21:07:22.79 info: Successfully processed 922 kill events
+2025-01-11 21:14:06.78 info: Downloaded 969 events
+2025-01-11 21:14:06.78 info: 887 events left after removing duplicates
+2025-01-11 21:14:06.85 info: Ignored 541 events with ID smaller than the latest event ID
+2025-01-11 21:14:06.85 info: Successfully processed 887 kill events
