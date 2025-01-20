@@ -11,3 +11,7 @@
 2025-01-20 00:32:29.83 info: Deleted data from 2025-01-13T00:00:00.000Z for kill type 3-5
 2025-01-20 00:32:29.83 info: Deleted data from 2025-01-13T00:00:00.000Z for kill type 6-10
 2025-01-20 00:32:29.83 info: Deleted data from 2025-01-13T00:00:00.000Z for kill type >10
+2025-01-20 00:54:42.24 info: Downloaded 969 events
+2025-01-20 00:54:42.24 info: 918 events left after removing duplicates
+2025-01-20 00:54:42.35 info: Ignored 319 events with ID smaller than the latest event ID
+2025-01-20 00:54:42.35 info: Successfully processed 918 kill events
