@@ -206,3 +206,6 @@
 2025-02-02 08:38:37.25 info: 802 events left after removing duplicates
 2025-02-02 08:38:37.37 info: Ignored 0 events with ID smaller than the latest event ID
 2025-02-02 08:38:37.37 info: Successfully processed 802 kill events
+2025-02-02 08:42:49.09 error: Error fetching data: Request failed with status code 504
+2025-02-02 08:43:19.11 error: Error fetching data: Request failed with status code 504
+2025-02-02 08:43:55.17 error: Error fetching data: Request failed with status code 504
