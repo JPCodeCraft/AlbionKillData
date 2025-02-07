@@ -371,3 +371,6 @@
 2025-02-07 14:35:31.45 info: 833 events left after removing duplicates
 2025-02-07 14:35:31.52 info: Ignored 570 events with ID smaller than the latest event ID
 2025-02-07 14:35:31.52 info: Successfully processed 833 kill events
+2025-02-07 14:42:41.80 error: Error fetching data: Request failed with status code 504
+2025-02-07 14:43:11.89 error: Error fetching data: Request failed with status code 504
+2025-02-07 14:45:09.10 error: Error fetching data: Request failed with status code 504
